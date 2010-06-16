@@ -112,6 +112,10 @@ public class YUICompressor {
                         }
 
                         in = new InputStreamReader(new FileInputStream(inputFilename), charset);
+
+                        if (verbose) {
+                            System.err.println("\n[INFO] Parsing: " + inputFilename);
+                        }
                     }
 
                     String outputFilename = output;
