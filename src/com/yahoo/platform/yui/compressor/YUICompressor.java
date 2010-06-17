@@ -29,6 +29,7 @@ public class YUICompressor {
         CmdLineParser.Option helpOpt = parser.addBooleanOption('h', "help");
         CmdLineParser.Option charsetOpt = parser.addStringOption("charset");
         CmdLineParser.Option outputFilenameOpt = parser.addStringOption('o', "output");
+        CmdLineParser.Option parsingOpt = parser.addBooleanOption('p', "parsing");
 
         Reader in = null;
         Writer out = null;
@@ -113,7 +114,7 @@ public class YUICompressor {
 
                         in = new InputStreamReader(new FileInputStream(inputFilename), charset);
 
-                        if (verbose) {
+                        if (parser.getOptionValue(parsingOpt) != null) {
                             System.err.println("\n[INFO] Parsing: " + inputFilename);
                         }
                     }
@@ -238,6 +239,7 @@ public class YUICompressor {
                         + "  --charset <charset>       Read the input file using <charset>\n"
                         + "  --line-break <column>     Insert a line break after the specified column number\n"
                         + "  -v, --verbose             Display informational messages and warnings\n"
+                        + "  -p, --parsing             Display the filename about to be parsed\n"
                         + "  -o <file>                 Place the output into <file>. Defaults to stdout.\n"
                         + "                            Multiple files can be processed using the following syntax:\n"
                         + "                            java -jar yuicompressor.jar -o '.css$:-min.css' *.css\n"
